@@ -1,0 +1,3 @@
+#!/bin/sh
+cat POSTGRES_RUNNING_CONTAINER | xargs docker stop
+rm POSTGRES_RUNNING_CONTAINER
