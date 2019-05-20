@@ -29,7 +29,11 @@ namespace LagerhausServer
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<LagerhausContext>(options => options.UseNpgsql("Host=localhost;Database=postgres;Username=postgres"));
+            services.AddDbContext<LagerhausContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("LagerhausContext")
+                )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,10 +45,10 @@ namespace LagerhausServer
             }
             else
             {
-                // app.UseHsts();
+                app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
