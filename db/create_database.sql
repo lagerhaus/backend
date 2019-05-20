@@ -6,12 +6,12 @@ DROP TABLE weather CASCADE;
 
 
 CREATE TABLE fruit (
-	fruit_id INTEGER PRIMARY KEY,
+	fruit_id SERIAL PRIMARY KEY,
 	name VARCHAR UNIQUE
 );
 
 CREATE TABLE ripeness (
-	ripeness_id INTEGER PRIMARY KEY,
+	ripeness_id SERIAL PRIMARY KEY,
 	name VARCHAR,
 	fruit_id INTEGER,
 	minimum_storage_span INTEGER,
@@ -21,14 +21,14 @@ CREATE TABLE ripeness (
 );
 
 CREATE TABLE region (
-	region_id INTEGER PRIMARY KEY,
+	region_id SERIAL PRIMARY KEY,
 	name VARCHAR UNIQUE,
 	area VARCHAR,
 	level INTEGER
 );
 
 CREATE TABLE batch (
-	batch_id INTEGER PRIMARY KEY,
+	batch_id SERIAL PRIMARY KEY,
 	fruit_id INTEGER,
 	year INTEGER,
 	month INTEGER,
@@ -44,7 +44,7 @@ CREATE TABLE batch (
 );
 
 CREATE TABLE weather (
-	weather_id INTEGER PRIMARY KEY,
+	weather_id SERIAL PRIMARY KEY,
 	region_id INTEGER,
 	year INTEGER,
 	month INTEGER,
