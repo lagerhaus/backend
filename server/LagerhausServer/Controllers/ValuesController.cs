@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LagerhausDb;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LagerhausServer.Controllers
@@ -10,11 +11,19 @@ namespace LagerhausServer.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private LagerhausContext db;
+
+        public ValuesController(LagerhausContext db)
+        {
+            this.db = db;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return this.db.Fruit.Select(f => f.Name).ToList();
+            // return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
