@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace LagerhausDb
 {
-    public partial class postgresContext : DbContext
+    public partial class LagerhausContext : DbContext
     {
-        public postgresContext()
+        public LagerhausContext()
         {
         }
 
-        public postgresContext(DbContextOptions<postgresContext> options)
+        public LagerhausContext(DbContextOptions<LagerhausContext> options)
             : base(options)
         {
         }
