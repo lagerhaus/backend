@@ -19,6 +19,9 @@ namespace LagerhausServer
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) => {
+                    config.AddEnvironmentVariables("LHAUS_");
+                })
                 .UseStartup<Startup>();
     }
 }

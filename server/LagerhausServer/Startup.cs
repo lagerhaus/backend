@@ -31,7 +31,7 @@ namespace LagerhausServer
 
             services.AddDbContext<LagerhausContext>(options =>
                 options.UseNpgsql(
-                    Configuration.GetConnectionString("LagerhausContext")
+                    Configuration.GetValue("CONNECTION_STRING", Configuration.GetConnectionString("LagerhausContext"))
                 )
             );
         }
