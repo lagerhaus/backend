@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Lagerhaus.DTOs;
 using LagerhausDb;
+using Lagerhaus.Errors;
 
 namespace LagerhausServer.Controllers
 {
@@ -25,6 +26,22 @@ namespace LagerhausServer.Controllers
             return this.db.Region
                 .Select(r => new RegionDTO(r))
                 .ToList();
+        }
+
+        [HttpGet("{regionName}")]
+        public ActionResult<RegionDTO> GetRegion([FromRoute] string regionName)
+        {
+            regionName = regionName.ToLower();
+
+            var region = this.db.Region
+                .Where(r => r.Name.ToLower() == regionName)
+                .Select(r => new RegionDTO(r))
+                .SingleOrDefault();
+
+            if(region == null)
+                return BadRequest(new NoSuchResourceError("No region with this name found!"));
+
+            return region;
         }
     }
 }
