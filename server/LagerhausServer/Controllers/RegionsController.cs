@@ -36,8 +36,8 @@ namespace LagerhausServer.Controllers
                 .Select(r => new RegionDTO(r))
                 .SingleOrDefault();
 
-            if(region == null)
-                return BadRequest(new NoSuchResourceError("No region with this name found!"));
+            if (region == null)
+                return BadRequest(new NoSuchResourceError("No region with this name found"));
 
             return region;
         }
