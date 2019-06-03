@@ -9,6 +9,7 @@ using Lagerhaus.Errors;
 using Lagerhaus.Validation;
 using Npgsql;
 using Microsoft.EntityFrameworkCore;
+using Lagerhaus.Processors;
 
 namespace LagerhausServer.Controllers
 {
@@ -16,19 +17,19 @@ namespace LagerhausServer.Controllers
     [ApiController]
     public class RegionsController : ControllerBase
     {
-        private LagerhausContext db;
         private RegionsValidation validation;
+        private RegionsProcessor processor;
 
-        public RegionsController(LagerhausContext db, RegionsValidation validation)
+        public RegionsController(RegionsValidation validation, RegionsProcessor processor)
         {
-            this.db = db;
             this.validation = validation;
+            this.processor = processor;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<RegionDTO>> GetAllRegions()
         {
-            return this.db.Region
+            return this.processor.GetAllRegions()
                 .Select(r => new RegionDTO(r))
                 .ToList();
         }
@@ -36,15 +37,12 @@ namespace LagerhausServer.Controllers
         [HttpGet("{regionName}")]
         public ActionResult<RegionDTO> GetRegion([FromRoute] string regionName)
         {
-            var region = this.db.Region
-                .Where(r => r.Name == regionName)
-                .Select(r => new RegionDTO(r))
-                .SingleOrDefault();
+            var region = this.processor.GetSingleRegion(regionName);
 
             if (region == null)
                 return BadRequest(new NoSuchResourceError("No region with this name found"));
 
-            return region;
+            return new RegionDTO(region);
         }
 
         [HttpPost]
@@ -56,24 +54,15 @@ namespace LagerhausServer.Controllers
             if (validationError != null)
                 return BadRequest(validationError);
 
-            var region = new Region
-            {
-                Name = dto.Name,
-                Area = dto.Area,
-                Level = dto.Level
-            };
-
             try
             {
-                this.db.Region.Add(region);
-                this.db.SaveChanges();
+                var region = this.processor.InsertRegion(dto);
+                return new RegionDTO(region);
             }
             catch (DbUpdateException)
             {
                 return BadRequest(new DuplicateKeyError("A region with this name already exists"));
             }
-
-            return new RegionDTO(region);
         }
     }
 }
