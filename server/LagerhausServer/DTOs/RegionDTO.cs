@@ -1,12 +1,18 @@
+using System.ComponentModel.DataAnnotations;
 using LagerhausDb;
 
 namespace Lagerhaus.DTOs
 {
     public class RegionDTO
     {
+        [Required]
         public string Name { get; set; }
-        public string Area { get; set; }
-        public int? Level { get; set; }
+        public string Area { get; set; } = null;
+        public int? Level { get; set; } = null;
+
+        public RegionDTO()
+        {
+        }
 
         public RegionDTO(Region region)
         {
@@ -14,5 +20,7 @@ namespace Lagerhaus.DTOs
             this.Area = region.Area;
             this.Level = region.Level;
         }
+
+        public override string ToString() => $"{Name} ({Area}, {Level})";
     }
 }
