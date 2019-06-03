@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Lagerhaus.DTOs;
 using LagerhausDb;
 using Lagerhaus.Errors;
+using Lagerhaus.Validation;
 
 namespace LagerhausServer.Controllers
 {
@@ -14,10 +15,12 @@ namespace LagerhausServer.Controllers
     public class RegionsController : ControllerBase
     {
         private LagerhausContext db;
+        private RegionsValidation validation;
 
-        public RegionsController(LagerhausContext db)
+        public RegionsController(LagerhausContext db, RegionsValidation validation)
         {
             this.db = db;
+            this.validation = validation;
         }
 
         [HttpGet]
