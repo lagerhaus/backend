@@ -20,7 +20,7 @@ namespace Lagerhaus.Processors
 
         public Region GetSingleRegion(string regionName) =>
             this.db.Region
-                .FirstOrDefault(r => r.Name == regionName);
+                .First(r => r.Name == regionName);
 
         public Region InsertRegion(RegionDTO dto)
         {
@@ -39,8 +39,7 @@ namespace Lagerhaus.Processors
 
         public Region UpdateRegion(string regionName, RegionDTO dto)
         {
-            var region = this.db.Region
-                .First(r => r.Name == regionName);
+            var region = GetSingleRegion(regionName);
 
             if (dto.Name != null)
                 region.Name = dto.Name;
@@ -53,6 +52,13 @@ namespace Lagerhaus.Processors
             this.db.SaveChanges();
 
             return region;
+        }
+
+        public void DeleteRegion(string regionName)
+        {
+            var region = GetSingleRegion(regionName);
+            this.db.Remove(region);
+            this.db.SaveChanges();
         }
     }
 }

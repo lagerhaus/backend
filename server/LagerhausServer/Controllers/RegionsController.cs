@@ -37,12 +37,15 @@ namespace LagerhausServer.Controllers
         [HttpGet("{regionName}")]
         public ActionResult<RegionDTO> GetRegion([FromRoute] string regionName)
         {
-            var region = this.processor.GetSingleRegion(regionName);
-
-            if (region == null)
+            try
+            {
+                var region = this.processor.GetSingleRegion(regionName);
+                return new RegionDTO(region);
+            }
+            catch (InvalidOperationException)
+            {
                 return BadRequest(new NoSuchResourceError("No region with this name found"));
-
-            return new RegionDTO(region);
+            }
         }
 
         [HttpPost]
@@ -75,9 +78,34 @@ namespace LagerhausServer.Controllers
                 var updatedRegion = this.processor.UpdateRegion(regionName, dto);
                 return new RegionDTO(updatedRegion);
             }
+            catch (InvalidOperationException)
+            {
+                return BadRequest(new NoSuchResourceError("No region with this name found"));
+            }
             catch (DbUpdateException)
             {
                 return BadRequest(new DatabaseError("Update failed; Maybe you tried to update the name to one that's already taken?"));
+            }
+        }
+
+        [HttpDelete("{regionName}")]
+        public ActionResult DeleteRegion(string regionName)
+        {
+            System.Console.WriteLine($"{nameof(RegionsController)}::{nameof(DeleteRegion)}({regionName})");
+
+            try
+            {
+                this.processor.DeleteRegion(regionName);
+                return Accepted();
+            }
+            catch (InvalidOperationException)
+            {
+                return BadRequest(new NoSuchResourceError("No region with this name found"));
+            }
+            catch (DbUpdateException exception)
+            {
+                System.Console.WriteLine(exception);
+                return BadRequest(new DatabaseError("Delete failed: Unknown database error"));
             }
         }
     }
