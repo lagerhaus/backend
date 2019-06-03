@@ -31,10 +31,8 @@ namespace LagerhausServer.Controllers
         [HttpGet("{regionName}")]
         public ActionResult<RegionDTO> GetRegion([FromRoute] string regionName)
         {
-            regionName = regionName.ToLower();
-
             var region = this.db.Region
-                .Where(r => r.Name.ToLower() == regionName)
+                .Where(r => r.Name == regionName)
                 .Select(r => new RegionDTO(r))
                 .SingleOrDefault();
 
