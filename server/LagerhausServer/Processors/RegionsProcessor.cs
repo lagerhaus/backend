@@ -36,5 +36,23 @@ namespace Lagerhaus.Processors
 
             return region;
         }
+
+        public Region UpdateRegion(string regionName, RegionDTO dto)
+        {
+            var region = this.db.Region
+                .First(r => r.Name == regionName);
+
+            if (dto.Name != null)
+                region.Name = dto.Name;
+            if (dto.Area != null)
+                region.Area = dto.Area;
+            if (dto.Level != null)
+                region.Level = dto.Level;
+
+            this.db.Update(region);
+            this.db.SaveChanges();
+
+            return region;
+        }
     }
 }

@@ -64,5 +64,21 @@ namespace LagerhausServer.Controllers
                 return BadRequest(new DuplicateKeyError("A region with this name already exists"));
             }
         }
+
+        [HttpPatch("{regionName}")]
+        public ActionResult<RegionDTO> PatchRegion(string regionName, RegionDTO dto)
+        {
+            System.Console.WriteLine($"{nameof(RegionsController)}::{nameof(PatchRegion)}({dto})");
+
+            try
+            {
+                var updatedRegion = this.processor.UpdateRegion(regionName, dto);
+                return new RegionDTO(updatedRegion);
+            }
+            catch (DbUpdateException)
+            {
+                return BadRequest(new DatabaseError("Update failed; Maybe you tried to update the name to one that's already taken?"));
+            }
+        }
     }
 }

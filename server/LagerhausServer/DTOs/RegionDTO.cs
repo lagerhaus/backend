@@ -5,7 +5,6 @@ namespace Lagerhaus.DTOs
 {
     public class RegionDTO
     {
-        [Required]
         public string Name { get; set; }
         public string Area { get; set; } = null;
         public int? Level { get; set; } = null;
