@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LagerhausDb
 {
@@ -11,6 +13,7 @@ namespace LagerhausDb
             Weather = new HashSet<Weather>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RegionId { get; set; }
         public string Name { get; set; }
         public string Area { get; set; }

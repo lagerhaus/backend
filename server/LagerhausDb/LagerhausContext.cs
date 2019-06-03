@@ -94,7 +94,7 @@ namespace LagerhausDb
 
                 entity.Property(e => e.RegionId)
                     .HasColumnName("region_id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Area)
                     .HasColumnName("area")
