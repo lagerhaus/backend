@@ -36,7 +36,7 @@ namespace LagerhausServer
                 )
             );
 
-            services.AddSingleton<RegionsValidation>();
+            services.AddScoped<RegionsValidation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
