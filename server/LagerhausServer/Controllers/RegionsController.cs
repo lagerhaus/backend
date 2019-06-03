@@ -50,7 +50,7 @@ namespace LagerhausServer.Controllers
         {
             System.Console.WriteLine($"RegionsController::PostRegion({dto})");
 
-            var validationError = this.validation.ValidateRegionDTO(dto);
+            var validationError = this.validation.ValidateRegionCreationDTO(dto);
             if (validationError != null)
                 return BadRequest(validationError);
 

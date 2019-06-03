@@ -5,7 +5,7 @@ namespace Lagerhaus.Validation
 {
     public class RegionsValidation
     {
-        public ValidationError ValidateRegionDTO(RegionDTO dto)
+        public ValidationError ValidateRegionCreationDTO(RegionDTO dto)
         {
             if (dto.Name == null)
                 return new ValidationError("Name cannot be null");
