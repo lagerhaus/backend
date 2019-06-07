@@ -143,7 +143,7 @@ namespace LagerhausDb
 
                 entity.Property(e => e.WeatherId)
                     .HasColumnName("weather_id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Month).HasColumnName("month");
 
