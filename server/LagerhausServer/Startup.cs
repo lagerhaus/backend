@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LagerhausDb;
+using LagerhausServer.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,9 @@ namespace LagerhausServer
                     Configuration.GetValue("CONNECTION_STRING", Configuration.GetConnectionString("LagerhausContext"))
                 )
             );
+
+            services.AddScoped<WeatherValidation>();
+           // services.AddScoped<WeatherProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
