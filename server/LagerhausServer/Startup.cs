@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lagerhaus.Processors;
 using Lagerhaus.Validation;
+using LagerhausServer.Validation;
 using LagerhausDb;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +40,9 @@ namespace LagerhausServer
 
             services.AddScoped<RegionsValidation>();
             services.AddScoped<RegionsProcessor>();
+
+            services.AddScoped<WeatherValidation>();
+           // services.AddScoped<WeatherProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
