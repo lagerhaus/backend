@@ -58,6 +58,7 @@ namespace LagerhausDb
 
                 entity.HasOne(d => d.Region)
                     .WithMany(p => p.Batch)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasForeignKey(d => d.RegionId)
                     .HasConstraintName("batch_region_id_fkey");
 
@@ -157,6 +158,7 @@ namespace LagerhausDb
 
                 entity.HasOne(d => d.Region)
                     .WithMany(p => p.Weather)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasForeignKey(d => d.RegionId)
                     .HasConstraintName("weather_region_id_fkey");
             });

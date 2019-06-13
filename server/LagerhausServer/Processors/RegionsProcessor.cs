@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Lagerhaus.DTOs;
 using LagerhausDb;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lagerhaus.Processors
 {
@@ -56,7 +57,10 @@ namespace Lagerhaus.Processors
 
         public void DeleteRegion(string regionName)
         {
-            var region = GetSingleRegion(regionName);
+            var region = this.db.Region
+                .Include(r => r.Batch)
+                .Include(r => r.Weather)
+                .First(r => r.Name == regionName);
             this.db.Remove(region);
             this.db.SaveChanges();
         }
