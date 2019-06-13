@@ -93,12 +93,12 @@ namespace LagerhausServer.Controllers
         [HttpGet("{year}/{month}/{region_name}")]
         public ActionResult<WeatherDTO> GetWeather([FromRoute] int year, [FromRoute] int month, [FromRoute] string region_name)
         {
-            WeatherDTO w = new  WeatherDTO(GetSingleWeatherByYearMonthRegion(year, month, region_name));
+            Weather w = GetSingleWeatherByYearMonthRegion(year, month, region_name);
 
             if (w == null /* || w.Count < 1 */)
                 return BadRequest(new NoSuchResourceError("No weather with this year and month found!"));
 
-            return w;
+            return new WeatherDTO(w);
         }
         #endregion
 
