@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LagerhausServer.DTOs
+namespace Lagerhaus.DTOs
 {
     public class WeatherDTO
     {
