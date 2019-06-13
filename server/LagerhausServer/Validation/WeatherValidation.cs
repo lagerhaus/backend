@@ -1,12 +1,12 @@
 ﻿using Lagerhaus.Errors;
-using LagerhausServer.DTOs;
-using LagerhausServer.Errors;
+using Lagerhaus.DTOs;
+using Lagerhaus.Errors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LagerhausServer.Validation
+namespace Lagerhaus.Validation
 {
     public class WeatherValidation
     {

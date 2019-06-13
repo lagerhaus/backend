@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Lagerhaus.Processors;
 using Lagerhaus.Validation;
 using LagerhausDb;
-using LagerhausServer.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;

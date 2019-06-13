@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LagerhausServer.Errors
+namespace Lagerhaus.Errors
 {
     public class InvalidMonthError:ValidationError
     {
