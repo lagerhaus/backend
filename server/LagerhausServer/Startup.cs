@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lagerhaus.Processors;
+using Lagerhaus.Validation;
 using LagerhausDb;
 using LagerhausServer.Validation;
 using Microsoft.AspNetCore.Builder;
@@ -36,6 +38,8 @@ namespace LagerhausServer
                 )
             );
 
+            services.AddScoped<RegionsValidation>();
+            services.AddScoped<RegionsProcessor>();
             services.AddScoped<WeatherValidation>();
            // services.AddScoped<WeatherProcessor>();
         }
