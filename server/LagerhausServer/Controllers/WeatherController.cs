@@ -96,7 +96,7 @@ namespace LagerhausServer.Controllers
             Weather w = GetSingleWeatherByYearMonthRegion(year, month, region_name);
 
             if (w == null /* || w.Count < 1 */)
-                return BadRequest(new NoSuchResourceError("No weather with this year and month found!"));
+                return BadRequest(new NoSuchResourceError("No weather with this year, month and region found!"));
 
             return new WeatherDTO(w);
         }
