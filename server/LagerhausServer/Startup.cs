@@ -42,6 +42,9 @@ namespace LagerhausServer
 
             services.AddScoped<WeatherValidation>();
            // services.AddScoped<WeatherProcessor>();
+
+            services.AddScoped<BatchesValidation>();
+            services.AddScoped<BatchesProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -33,7 +33,7 @@ namespace LagerhausDb
 
                 entity.Property(e => e.BatchId)
                     .HasColumnName("batch_id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Amount).HasColumnName("amount");
 
