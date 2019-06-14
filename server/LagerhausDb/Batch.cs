@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LagerhausDb
 {
     public partial class Batch
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BatchId { get; set; }
         public int? FruitId { get; set; }
         public int? Year { get; set; }
