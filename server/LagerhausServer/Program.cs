@@ -22,6 +22,7 @@ namespace LagerhausServer
                 .ConfigureAppConfiguration((hostingContext, config) => {
                     config.AddEnvironmentVariables("LHAUS_");
                 })
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseUrls("http://*:5001");
     }
 }

@@ -6,6 +6,7 @@ using Lagerhaus.Processors;
 using Lagerhaus.Validation;
 using LagerhausDb;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,7 @@ namespace LagerhausServer
             services.AddScoped<RegionsProcessor>();
 
             services.AddScoped<WeatherValidation>();
-           // services.AddScoped<WeatherProcessor>();
+            // services.AddScoped<WeatherProcessor>();
 
             services.AddScoped<BatchesValidation>();
             services.AddScoped<BatchesProcessor>();
@@ -60,6 +61,11 @@ namespace LagerhausServer
                 app.UseHttpsRedirection();
             }
 
+            app.UseCors(policy => policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+            );
             app.UseMvc();
         }
     }
