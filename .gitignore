@@ -495,3 +495,4 @@ MigrationBackup/
 ### CUSTOM ###
 
 POSTGRES_RUNNING_CONTAINER
+db/pg_data/
