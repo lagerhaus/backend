@@ -12,10 +12,17 @@ namespace Lagerhaus.Validation
         
             public ValidationError ValidateBatchCreationDTO(BatchDTO dto)
             {
-           // if (dto.Month == null || dto.Year == null)
-            
-            
+            // if (dto.Month == null || dto.Year == null)
 
+            // if( Regex dto.StorageDate())
+            try
+            {
+                DateTime.ParseExact(dto.StorageDate, "yyyy/MM/dd", null);
+                    }
+            catch(Exception e)
+            {
+                return new ValidationError("Format must be yyyy/MM/dd");
+            }
             if (dto.FruitName == null)
                     return new ValidationError("Name cannot be null");
 

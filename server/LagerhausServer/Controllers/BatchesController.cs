@@ -93,6 +93,7 @@ namespace Lagerhaus.Controllers
             {
                 return BadRequest(new NoSuchResourceError("No batch with this name found"));
             }
+            
         }
 
         [HttpPost]
@@ -113,6 +114,12 @@ namespace Lagerhaus.Controllers
             {
                 return BadRequest(new DuplicateKeyError("A batch with this name already exists"));
             }
+            catch (InvalidOperationException exc)
+            {
+                return BadRequest(new NoSuchResourceError("References on fruit,region or ripeness could not be found"));
+            }
+            
+
         }
 
 
