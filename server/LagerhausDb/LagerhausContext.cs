@@ -78,7 +78,7 @@ namespace LagerhausDb
 
                 entity.Property(e => e.FruitId)
                     .HasColumnName("fruit_id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -118,7 +118,7 @@ namespace LagerhausDb
 
                 entity.Property(e => e.RipenessId)
                     .HasColumnName("ripeness_id")
-                    .ValueGeneratedNever();
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.FruitId).HasColumnName("fruit_id");
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LagerhausDb
 {
@@ -10,6 +11,7 @@ namespace LagerhausDb
             Batch = new HashSet<Batch>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RipenessId { get; set; }
         public string Name { get; set; }
         public int? FruitId { get; set; }

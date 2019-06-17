@@ -14,6 +14,7 @@ namespace Lagerhaus.Validation
             {
            // if (dto.Month == null || dto.Year == null)
             
+            
 
             if (dto.FruitName == null)
                     return new ValidationError("Name cannot be null");
