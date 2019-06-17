@@ -72,7 +72,7 @@ namespace Lagerhaus.Processors
                 Amount = b.Amount,
                 StorageDate = DateTime.ParseExact(b.StorageDate, "yyyy/MM/dd", null),
                 Region = db.Region.Single(x => x.Name == b.Region),
-                Ripeness = db.Ripeness.Single(x => x.Name == b.Ripeness)
+                Ripeness = db.Ripeness.Single(x => x.Name == b.Ripeness && x.Fruit.Name == b.FruitName)
             };
             return batch;
         }
