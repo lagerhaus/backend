@@ -10,7 +10,8 @@ namespace Lagerhaus.DTOs
     public class BatchDTO
     {
         //public int BatchId { get; set; }
-        public String Fruit_Name { get; set; } // Fruit id = name ?
+        [JsonProperty("fruit_name")]
+        public String FruitName { get; set; } // Fruit id = name ?
         public int Year { get; set; }
         public int Month { get; set; }
         public int? Amount { get; set; }
@@ -25,7 +26,7 @@ namespace Lagerhaus.DTOs
 
         public BatchDTO(Batch b)
         {
-            this.Fruit_Name = b.Fruit.Name;
+            this.FruitName = b.Fruit.Name;
             this.Year = b.Year.Value;
             this.Month = b.Month.Value;
             this.Amount = b.Amount;
@@ -36,7 +37,7 @@ namespace Lagerhaus.DTOs
 
         public override string ToString()
         {
-            return "Fruit_Name: " + Fruit_Name + "Year: " + Year + "Month: " + Month + "Amount: " + Amount + "StorageDate: " + StorageDate + "Region: " + Region + "Ripeness: " + Ripeness;
+            return "Fruit_Name: " + FruitName + "Year: " + Year + "Month: " + Month + "Amount: " + Amount + "StorageDate: " + StorageDate + "Region: " + Region + "Ripeness: " + Ripeness;
         }
 
 

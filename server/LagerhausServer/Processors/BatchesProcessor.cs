@@ -66,7 +66,7 @@ namespace Lagerhaus.Processors
                 Area = dto.Area,
                 Level = dto.Level
                 **/
-                Fruit = db.Fruit.Single(x => x.Name == b.Fruit_Name),
+                Fruit = db.Fruit.Single(x => x.Name == b.FruitName),
                 Year = b.Year,
                 Month = b.Month,
                 Amount = b.Amount,
@@ -84,7 +84,7 @@ namespace Lagerhaus.Processors
             // BatchDTO dbDto = new BatchDTO(batch);
             
 
-            if (dto.Fruit_Name != null) batch.Fruit = db.Fruit.Single(x => x.Name == dto.Fruit_Name);
+            if (dto.FruitName != null) batch.Fruit = db.Fruit.Single(x => x.Name == dto.FruitName);
             if (dto.Year != 0) batch.Year = dto.Year;
             if (dto.Month != 0) batch.Month = dto.Month;
             if (dto.Amount != 0) batch.Amount = dto.Amount;
