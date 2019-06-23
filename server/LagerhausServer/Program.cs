@@ -12,17 +12,21 @@ namespace LagerhausServer
 {
     public class Program
     {
+        const string ENV_VAR_PREFIX = "LHAUS_";
+
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) {
+            var backendPort = Environment.GetEnvironmentVariable($"{ENV_VAR_PREFIX}BACKEND_PORT") ?? "5001";
+            return WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) => {
-                    config.AddEnvironmentVariables("LHAUS_");
+                    config.AddEnvironmentVariables(ENV_VAR_PREFIX);
                 })
                 .UseStartup<Startup>()
-                .UseUrls("http://*:5001");
+                .UseUrls($"http://*:{backendPort}");
+        }
     }
 }
